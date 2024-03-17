@@ -1,11 +1,11 @@
 package ru.mark.planets.models;
 
 public class Body {
-    private double mass;
-    private Vector speed;
-    private Vector accelerate;
-    private double x;
-    private double y;
+    public double mass;
+    public Vector speed;
+    public Vector accelerate;
+    public double x;
+    public double y;
 
     public Body(double mass,
                 Vector speed,
@@ -18,4 +18,5 @@ public class Body {
         this.x = x;
         this.y = y;
     }
+
 }

@@ -4,6 +4,7 @@ import ru.mark.planets.models.Body;
 import ru.mark.planets.models.Vector;
 
 import javax.swing.*;
+import java.awt.*;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class Application {
     public static final double MIN_RADIUS = Math.pow(10, 2);
     public static final double MAX_RADIUS = Math.pow(10, 13);
 
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 1000;
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -34,8 +37,8 @@ public class Application {
 
         Window window = new Window(count);
         window.setLocationRelativeTo(null);
-        window.setBounds(10, 10, 1000, 1000);
-
+        window.setBounds(10, 10, WIDTH, HEIGHT);
+        window.setLayout(null);
         window.setVisible(true);
     }
 
@@ -47,6 +50,18 @@ public class Application {
             super("Планеты");
             this.count = count;
             init();
+            JButton button = new JButton("press me");
+            button.setBounds(0, 0, 120, 25);
+            add(button);
+            button.addActionListener(e -> {
+                Graphics graphics = getGraphics();
+                graphics.setColor(Color.BLACK);
+                for (Body body : bodies) {
+                    graphics.fillOval((int) Math.round(Application.WIDTH * body.x / MAX_RADIUS + WIDTH / 2),
+                            (int) Math.round(Application.HEIGHT * body.y / MAX_RADIUS + HEIGHT / 2),
+                            5, 5);
+                }
+            });
         }
 
         private void init() {
@@ -55,8 +70,8 @@ public class Application {
                 Body body = new Body(RND.nextDouble(MIN_MASS, MAX_MASS),
                         new Vector(RND.nextDouble(MIN_SPEED, MAX_SPEED), RND.nextDouble(MIN_SPEED, MAX_SPEED)),
                         new Vector(RND.nextDouble(0, 10_000), RND.nextDouble(0, 10_000)),
-                        RND.nextDouble(MIN_RADIUS, MAX_RADIUS),
-                        RND.nextDouble(MIN_RADIUS, MAX_RADIUS)
+                        RND.nextDouble(-MAX_RADIUS, MAX_RADIUS),
+                        RND.nextDouble(-MAX_RADIUS, MAX_RADIUS)
                 );
                 bodies.add(body);
             }
