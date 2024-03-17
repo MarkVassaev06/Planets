@@ -1,9 +1,21 @@
 package ru.mark.planets.models;
 
 public class Body {
-    private float mass;
+    private double mass;
     private Vector speed;
     private Vector accelerate;
-    private float x;
-    private float y;
+    private double x;
+    private double y;
+
+    public Body(double mass,
+                Vector speed,
+                Vector accelerate,
+                double x,
+                double y) {
+        this.mass = mass;
+        this.speed = speed;
+        this.accelerate = accelerate;
+        this.x = x;
+        this.y = y;
+    }
 }
