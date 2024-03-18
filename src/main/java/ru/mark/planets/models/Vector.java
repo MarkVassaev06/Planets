@@ -1,27 +1,17 @@
 package ru.mark.planets.models;
 
 public class Vector {
-    private double x;
-    private double y;
+    public double x;
+    public double y;
 
     public Vector(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public double getX() {
-        return x;
+    public Vector(Vector speed) {
+        x = speed.x;
+        y = speed.y;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
 }
